@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./script.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Space+Mono:wght@400;700&family=Patrick+Hand&family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<style>
+  body { margin:0; font-family:'DM Sans',sans-serif; color:#2E2A24; background:#F4EFE3; -webkit-font-smoothing:antialiased; }
+  ::selection { background:#0E8C9C; color:#fff; }
+  #c-name::placeholder, #c-email::placeholder { color:#a59c89; font-style:italic; }
+  @keyframes spin { to { transform:rotate(360deg); } }
+  @media (prefers-reduced-motion: reduce){ *{ transition:none !important; animation:none !important; } }
+</style>
+</helmet>
+
+<div style="position:relative; min-height:100vh; background-color:#F4EFE3; background-image:radial-gradient(rgba(46,42,36,0.11) 1.1px, transparent 1.2px); background-size:26px 26px; overflow-x:clip;">
+
+  <!-- HEADER -->
+  <header id="site-header" style="position:sticky; top:0; z-index:300; padding:16px 28px 0; transition:padding .35s cubic-bezier(0.16,1,0.3,1);">
+    <div id="header-card" style="max-width:1180px; margin:0 auto; padding:13px 30px; display:flex; align-items:center; justify-content:space-between; background:rgba(248,244,236,0.9); backdrop-filter:blur(10px); border:1px solid rgba(46,42,36,0.12); border-radius:16px; box-shadow:0 10px 30px -18px rgba(46,42,36,0.35); transition:padding .35s cubic-bezier(0.16,1,0.3,1), box-shadow .35s ease;">
+      <a href="index.html" id="hj-logo" style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:30px; letter-spacing:-1px; color:#0E8C9C; text-decoration:none;">HJ</a>
+      <nav style="display:flex; gap:34px; align-items:center;">
+        <sc-for list="{{ nav }}" as="n" hint-placeholder-count="4">
+          <a href="{{ n.href }}" style="font-family:'Space Grotesk',sans-serif; font-weight:500; font-size:16px; color:#2E2A24; text-decoration:none; padding-bottom:3px; background-image:linear-gradient(#0E8C9C,#0E8C9C); background-position:0 100%; background-repeat:no-repeat; background-size:{{ n.line }} 2px; transition:background-size .45s cubic-bezier(0.34,1.56,0.64,1);" style-hover="background-size:100% 2px;">{{ n.label }}</a>
+        </sc-for>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section style="max-width:1180px; margin:0 auto; padding:46px 28px 0;">
+    <div style="display:flex; align-items:center; gap:12px; margin-bottom:2px;">
+      <span style="width:30px; height:30px; border-radius:50%; border:2px solid #0E8C9C; display:flex; align-items:center; justify-content:center; color:#0E8C9C; font-size:15px;">&#9786;</span>
+      <span style="font-family:'Architects Daughter',cursive; font-size:30px; color:#0E8C9C;">Say hi!</span>
+    </div>
+    <h1 style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:clamp(52px,15vw,120px); line-height:0.86; letter-spacing:-5px; margin:6px 0 0; color:#3a352d;">LET'S</h1>
+    <div style="font-family:'Architects Daughter',cursive; font-size:clamp(42px,12vw,96px); line-height:0.9; color:#0E8C9C; margin-top:6px;">Talk.</div>
+    <p style="font-family:'DM Sans',sans-serif; font-size:23px; line-height:1.5; color:#6b6354; max-width:820px; margin:30px 0 0;">Please use the form below to submit details regarding your project, collaboration, or inquiry and I will get back to you asap.</p>
+  </section>
+
+  <!-- BODY -->
+  <section style="max-width:1180px; margin:0 auto; padding:48px 28px 90px;">
+    <div style="display:flex; flex-wrap:wrap; gap:34px; align-items:flex-start;">
+
+      <!-- FORM (finder window) -->
+      <div style="flex:1 1 560px; min-width:320px; position:relative;">
+        <!-- sticky note -->
+        <div style="position:absolute; top:-46px; right:-12px; z-index:6; width:172px; background:#FDF6D9; padding:24px 18px 22px; box-shadow:0 16px 30px -16px rgba(46,42,36,0.4); transform:rotate(5deg);">
+          <div style="position:absolute; top:-16px; left:50%; transform:translateX(-50%) rotate(-3deg); width:74px; height:30px; background:rgba(230,224,209,0.85); box-shadow:0 3px 6px -3px rgba(0,0,0,0.3);"></div>
+          <div style="font-family:'Architects Daughter',cursive; font-size:22px; line-height:1.3; color:#3a352d;">I usually reply within a few hours</div>
+        </div>
+
+        <div style="background:#f3eee2; border:1px solid rgba(46,42,36,0.12); border-radius:16px; box-shadow:0 24px 50px -24px rgba(46,42,36,0.32); overflow:hidden;">
+          <div style="display:flex; align-items:center; gap:8px; padding:14px 18px; background:#e7e0d1; border-bottom:1px solid rgba(46,42,36,0.1);">
+            <span style="width:13px; height:13px; border-radius:50%; background:#ED6A5E;"></span>
+            <span style="width:13px; height:13px; border-radius:50%; background:#F5BF4F;"></span>
+            <span style="width:13px; height:13px; border-radius:50%; background:#62C554;"></span>
+            <span style="margin-left:auto; margin-right:auto; font-size:14px; color:#8a8170;">himanshi's work</span>
+          </div>
+          <div style="padding:38px 40px 40px;">
+            <div style="margin-bottom:28px;">
+              <label for="c-name" style="display:block; font-family:'Space Grotesk',sans-serif; font-weight:700; letter-spacing:1px; font-size:15px; color:#0E8C9C; margin-bottom:12px;">NAME</label>
+              <input id="c-name" type="text" placeholder="Jane Smith" style="width:100%; box-sizing:border-box; padding:18px 20px; font-family:'DM Sans',sans-serif; font-size:19px; color:#2E2A24; background:#f7f3ea; border:1px solid rgba(46,42,36,0.18); border-radius:4px; outline:none; transition:border-color .25s ease, box-shadow .25s ease;" style-focus="border-color:#0E8C9C; box-shadow:0 0 0 3px rgba(14,140,156,0.12);">
+            </div>
+            <div style="margin-bottom:28px;">
+              <label for="c-email" style="display:block; font-family:'Space Grotesk',sans-serif; font-weight:700; letter-spacing:1px; font-size:15px; color:#0E8C9C; margin-bottom:12px;">EMAIL</label>
+              <input id="c-email" type="email" placeholder="jane@framer.com" style="width:100%; box-sizing:border-box; padding:18px 20px; font-family:'DM Sans',sans-serif; font-size:19px; color:#2E2A24; background:#f7f3ea; border:1px solid rgba(46,42,36,0.18); border-radius:4px; outline:none; transition:border-color .25s ease, box-shadow .25s ease;" style-focus="border-color:#0E8C9C; box-shadow:0 0 0 3px rgba(14,140,156,0.12);">
+            </div>
+            <div style="margin-bottom:34px;">
+              <label for="c-topic" style="display:block; font-family:'Space Grotesk',sans-serif; font-weight:700; letter-spacing:1px; font-size:15px; color:#0E8C9C; margin-bottom:12px;">WHAT ARE YOU REACHING OUT FOR?</label>
+              <select id="c-topic" style="width:100%; box-sizing:border-box; padding:18px 20px; font-family:'DM Sans',sans-serif; font-size:19px; font-style:italic; color:#6b6354; background:#f7f3ea; border:1px solid rgba(46,42,36,0.18); border-radius:4px; outline:none; appearance:none; cursor:pointer; background-image:url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2222%22 height=%2222%22 fill=%22none%22 stroke=%22%232E2A24%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22><path d=%22M6 9l6 6 6-6%22/></svg>'); background-repeat:no-repeat; background-position:right 18px center; transition:border-color .25s ease, box-shadow .25s ease;" style-focus="border-color:#0E8C9C; box-shadow:0 0 0 3px rgba(14,140,156,0.12);">
+                <sc-for list="{{ topics }}" as="t" hint-placeholder-count="5">
+                  <option value="{{ t.value }}">{{ t.label }}</option>
+                </sc-for>
+              </select>
+            </div>
+            <div style="margin-bottom:30px;">
+              <label for="c-msg" style="display:block; font-family:'Space Grotesk',sans-serif; font-weight:700; letter-spacing:1px; font-size:15px; color:#0E8C9C; margin-bottom:12px;">MESSAGE</label>
+              <textarea id="c-msg" rows="4" placeholder="Tell me a little about the project..." style="width:100%; box-sizing:border-box; padding:18px 20px; font-family:'DM Sans',sans-serif; font-size:19px; color:#2E2A24; background:#f7f3ea; border:1px solid rgba(46,42,36,0.18); border-radius:4px; outline:none; resize:vertical; transition:border-color .25s ease, box-shadow .25s ease;" style-focus="border-color:#0E8C9C; box-shadow:0 0 0 3px rgba(14,140,156,0.12);"></textarea>
+            </div>
+            <div style="display:flex; justify-content:flex-end;">
+              <button onClick="{{ sendMessage }}" style="display:inline-flex; align-items:center; gap:14px; padding:18px 34px; background:#0E8C9C; color:#fff; border:none; cursor:pointer; font-family:'Space Grotesk',sans-serif; font-weight:700; letter-spacing:1px; font-size:18px; border-radius:4px; box-shadow:6px 8px 0 0 rgba(46,42,36,0.16); transition:transform .3s cubic-bezier(0.34,1.56,0.64,1), box-shadow .3s ease;" style-hover="transform:translate(-2px,-2px); box-shadow:9px 12px 0 0 rgba(46,42,36,0.18);">SEND MESSAGE <span style="font-size:20px;">&#8599;</span></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT RAIL -->
+      <div style="flex:1 1 360px; min-width:300px; display:flex; flex-direction:column; gap:28px;">
+        <!-- dark email card -->
+        <div style="position:relative; background:#2b2620; border-radius:16px; padding:40px 38px 38px; overflow:hidden; box-shadow:0 24px 50px -24px rgba(43,38,32,0.6);">
+          <div style="position:absolute; top:-40px; right:-40px; width:220px; height:220px; background:radial-gradient(circle, rgba(14,140,156,0.45), rgba(59,111,224,0.18) 55%, transparent 72%); filter:blur(6px);"></div>
+          <div style="position:relative;">
+            <div style="font-family:'Architects Daughter',cursive; font-size:30px; color:#0E8C9C;">Prefer email ?</div>
+            <div style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:40px; letter-spacing:-1px; color:#F4EFE3; margin-top:4px;">SHOOT IT <span style="font-family:'Architects Daughter',cursive; font-weight:400; color:#0E8C9C;">Directly.</span></div>
+            <p style="font-family:'DM Sans',sans-serif; font-size:18px; line-height:1.5; color:#b7ad9c; margin:18px 0 28px; max-width:340px;">Share a brief overview of your requirements, and I'll respond at the earliest.</p>
+            <a href="mailto:himanshijain053@gmail.com" style="display:flex; align-items:center; gap:18px; padding:18px 22px; border:1px solid rgba(244,239,227,0.22); border-radius:6px; text-decoration:none; transition:background .25s ease, transform .3s cubic-bezier(0.34,1.56,0.64,1);" style-hover="background:rgba(244,239,227,0.06); transform:translateY(-3px);">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#b7ad9c" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+              <span style="font-family:'Space Grotesk',sans-serif; font-weight:500; font-size:20px; color:#F4EFE3;">himanshijain053@gmail.com</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- status card -->
+        <div style="background:#efe9dc; border:1px solid rgba(46,42,36,0.1); border-radius:16px; padding:14px 30px; box-shadow:0 16px 32px -24px rgba(46,42,36,0.4);">
+          <sc-for list="{{ status }}" as="s" hint-placeholder-count="3">
+            <div style="display:flex; align-items:center; gap:18px; padding:20px 0; border-bottom:1px solid {{ s.border }};">
+              <span style="flex:0 0 120px; font-family:'Space Grotesk',sans-serif; font-weight:700; letter-spacing:1px; font-size:15px; color:#0E8C9C;">{{ s.label }}</span>
+              <span style="display:flex; align-items:center; gap:10px; font-family:'Space Grotesk',sans-serif; font-size:22px; color:#2E2A24;">
+                <sc-if value="{{ s.dot }}" hint-placeholder-val="{{ false }}"><span style="width:11px; height:11px; border-radius:50%; background:#3f8a5b;"></span></sc-if>
+                {{ s.value }}
+              </span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="background:#2b2620; padding:64px 28px 40px; position:relative; margin-top:30px;">
+    <div style="max-width:1180px; margin:0 auto; text-align:center;">
+      <div style="font-family:'Architects Daughter',cursive; font-size:32px; color:#0E8C9C;">&amp; that's a wrap!</div>
+      <h2 style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:44px; letter-spacing:-1px; color:#F4EFE3; margin:6px 0 36px;">GLAD YOU MADE IT HERE.</h2>
+      <div style="font-family:'Architects Daughter',cursive; font-size:26px; color:#b7ad9c; margin-bottom:18px;">You can connect with me on,</div>
+      <div style="display:flex; flex-wrap:wrap; gap:14px 30px; justify-content:center; align-items:center; margin-bottom:50px;">
+        <sc-for list="{{ socials }}" as="s" hint-placeholder-count="4">
+          <a href="{{ s.url }}" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:6px; font-family:'Space Grotesk',sans-serif; font-weight:700; letter-spacing:1px; font-size:22px; color:{{ s.color }}; text-decoration:none; transition:transform .3s cubic-bezier(0.34,1.56,0.64,1);" style-hover="transform:translateY(-4px);">{{ s.label }} &#8599;</a>
+        </sc-for>
+      </div>
+      <div style="display:flex; flex-wrap:wrap; gap:20px; align-items:center; justify-content:space-between; border-top:1px solid rgba(244,239,227,0.14); padding-top:24px;">
+        <div style="font-family:'Architects Daughter',cursive; font-size:24px; color:#b7ad9c; display:flex; align-items:center; gap:10px;">Built with care and a lot of passion! <span style="color:#0E8C9C;">&#10084;</span></div>
+        <div style="font-family:'DM Sans',sans-serif; font-variant-numeric:tabular-nums; font-size:15px; color:#8a8170; letter-spacing:1px;">{{ clockTime }} &nbsp;&#124;&nbsp; {{ dateLong }}</div>
+      </div>
+    </div>
+  </footer>
+
+  <button id="go-top" onClick="{{ scrollTop }}" aria-label="Back to top" style="position:fixed; right:26px; bottom:26px; z-index:60; width:108px; height:108px; border:none; background:transparent; cursor:pointer; display:flex; align-items:center; justify-content:center; opacity:0; transform:translateY(14px); pointer-events:none; transition:opacity .4s ease, transform .4s cubic-bezier(0.34,1.56,0.64,1);" style-hover="transform:translateY(-4px);">
+    <svg viewBox="0 0 108 108" width="108" height="108" style="position:absolute; inset:0; animation:spin 11s linear infinite;">
+      <defs><path id="gtt-path" d="M54,54 m-40,0 a40,40 0 1,1 80,0 a40,40 0 1,1 -80,0"></path></defs>
+      <text fill="#2E2A24" style="font-family:'Space Grotesk',sans-serif; font-size:12px; font-weight:700; letter-spacing:3.5px;"><textPath href="#gtt-path" startOffset="0">GO TO TOP&#160;&#160;&#9670;&#160;&#160;GO TO TOP&#160;&#160;&#9670;&#160;&#160;</textPath></text>
+    </svg>
+    <span style="position:absolute; width:66px; height:66px; border:1.6px dashed rgba(46,42,36,0.55); border-radius:50%;"></span>
+    <span style="position:relative; color:#0E8C9C; font-size:30px; line-height:1; font-weight:700;">&#8593;</span>
+  </button>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  state = { now: new Date() };
+  componentDidMount() {
+    this._reduced = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+    this._tick = setInterval(() => this.setState({ now: new Date() }), 1000);
+    setTimeout(() => this.initHeader(), 30);
+  }
+  componentWillUnmount() { clearInterval(this._tick); }
+  pad(n) { return (n < 10 ? '0' : '') + n; }
+  scrollTop = () => window.scrollTo({ top: 0, behavior: this._reduced ? 'auto' : 'smooth' });
+  initHeader() {
+    const h = document.getElementById('site-header');
+    const logo = document.getElementById('hj-logo');
+    if (!h) return;
+    const onScroll = () => {
+      const s = window.scrollY > 40;
+      h.style.paddingTop = s ? '10px' : '16px';
+      const card = document.getElementById('header-card');
+      if (card) {
+        card.style.paddingTop = s ? '9px' : '13px';
+        card.style.paddingBottom = s ? '9px' : '13px';
+        card.style.boxShadow = s ? '0 16px 36px -16px rgba(46,42,36,0.45)' : '0 10px 30px -18px rgba(46,42,36,0.35)';
+      }
+      if (logo) logo.style.fontSize = s ? '25px' : '28px';
+      const gt = document.getElementById('go-top');
+      if (gt) {
+        const show = window.scrollY > 320;
+        gt.style.opacity = show ? '1' : '0';
+        gt.style.transform = show ? 'translateY(0)' : 'translateY(14px)';
+        gt.style.pointerEvents = show ? 'auto' : 'none';
+      }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+
+  sendMessage = () => {
+    const name = (document.getElementById('c-name') || {}).value || '';
+    const email = (document.getElementById('c-email') || {}).value || '';
+    const topicEl = document.getElementById('c-topic');
+    const topic = topicEl ? topicEl.options[topicEl.selectedIndex].text : '';
+    const msg = (document.getElementById('c-msg') || {}).value || '';
+    const subject = encodeURIComponent('Portfolio enquiry' + (topic && topic !== 'Select...' ? ' — ' + topic : ''));
+    const body = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\n' + msg);
+    window.location.href = 'mailto:himanshijain053@gmail.com?subject=' + subject + '&body=' + body;
+  };
+
+  renderVals() {
+    const main = 'index.html';
+    const nav = [
+      { label: 'Work', href: 'work.html', line: '0%' },
+      { label: 'About', href: 'about.html', line: '0%' },
+      { label: 'Resume', href: 'resume.html', line: '0%' },
+      { label: 'Contact', href: 'contact.html', line: '100%' }
+    ];
+
+    const topics = [
+      { value: '', label: 'Select...' },
+      { value: 'project', label: 'A product / UX project' },
+      { value: 'collab', label: 'Collaboration or contract' },
+      { value: 'fulltime', label: 'Full-time opportunity' },
+      { value: 'speaking', label: 'Speaking / mentoring' },
+      { value: 'other', label: 'Something else' }
+    ];
+
+    const status = [
+      { label: 'STATUS', value: 'Open to work', dot: true, border: 'rgba(46,42,36,0.12)' },
+      { label: 'BASED IN', value: 'Gurugram', dot: false, border: 'rgba(46,42,36,0.12)' },
+      { label: 'TIME ZONE', value: 'IST \u00b7 UTC +5:30', dot: false, border: 'transparent' }
+    ];
+
+    const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    const n = this.state.now;
+    const clockTime = this.pad(n.getHours()) + ':' + this.pad(n.getMinutes()) + ':' + this.pad(n.getSeconds());
+    const dateLong = days[n.getDay()] + ', ' + months[n.getMonth()] + ' ' + n.getDate() + ', ' + n.getFullYear();
+    const socials = [
+      { label: 'LINKEDIN', url: 'https://www.linkedin.com/in/himanshijain', color: '#5b86e6' },
+      { label: 'INSTAGRAM', url: 'https://www.instagram.com/himanshijain', color: '#D6336C' },
+      { label: 'BEHANCE', url: 'https://www.behance.net/himanshijain', color: '#3B6FE0' },
+      { label: 'WHATSAPP', url: 'https://wa.me/917014744297', color: '#62C554' }
+    ];
+
+    return { nav, topics, status, sendMessage: this.sendMessage, socials, clockTime, dateLong, scrollTop: this.scrollTop };
+  }
+}
+</script>
+</body>
+</html>

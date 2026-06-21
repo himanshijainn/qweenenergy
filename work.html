@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./script.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Space+Mono:wght@400;700&family=Patrick+Hand&family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<style>
+  body { margin:0; font-family:'DM Sans',sans-serif; color:#2E2A24; background:#F4EFE3; -webkit-font-smoothing:antialiased; }
+  ::selection { background:#0E8C9C; color:#fff; }
+  @keyframes spin { to { transform:rotate(360deg); } }
+  @media (prefers-reduced-motion: reduce){ *{ transition:none !important; animation:none !important; } }
+</style>
+</helmet>
+
+<div style="position:relative; min-height:100vh; background-color:#F4EFE3; background-image:radial-gradient(rgba(46,42,36,0.11) 1.1px, transparent 1.2px); background-size:26px 26px; overflow-x:clip;">
+
+  <!-- HEADER -->
+  <header id="site-header" style="position:sticky; top:0; z-index:300; padding:16px 28px 0; transition:padding .35s cubic-bezier(0.16,1,0.3,1);">
+    <div id="header-card" style="max-width:1180px; margin:0 auto; padding:13px 30px; display:flex; align-items:center; justify-content:space-between; background:rgba(248,244,236,0.9); backdrop-filter:blur(10px); border:1px solid rgba(46,42,36,0.12); border-radius:16px; box-shadow:0 10px 30px -18px rgba(46,42,36,0.35); transition:padding .35s cubic-bezier(0.16,1,0.3,1), box-shadow .35s ease;">
+      <a href="index.html" id="hj-logo" style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:30px; letter-spacing:-1px; color:#0E8C9C; text-decoration:none;">HJ</a>
+      <nav style="display:flex; gap:34px; align-items:center;">
+        <sc-for list="{{ nav }}" as="n" hint-placeholder-count="5">
+          <a href="{{ n.href }}" style="font-family:'Space Grotesk',sans-serif; font-weight:500; font-size:16px; color:{{ n.color }}; text-decoration:none; padding-bottom:3px; background-image:linear-gradient(#0E8C9C,#0E8C9C); background-position:0 100%; background-repeat:no-repeat; background-size:{{ n.line }} 2px; transition:background-size .45s cubic-bezier(0.34,1.56,0.64,1);" style-hover="background-size:100% 2px;">{{ n.label }}</a>
+        </sc-for>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section style="max-width:1180px; margin:0 auto; padding:30px 28px 10px;">
+    <div style="display:flex; align-items:center; gap:12px; margin-bottom:6px;">
+      <span style="width:30px; height:30px; border-radius:50%; border:2px solid #0E8C9C; display:flex; align-items:center; justify-content:center; color:#0E8C9C; font-size:15px;">&#9786;</span>
+      <span style="font-family:'Architects Daughter',cursive; font-size:30px; color:#0E8C9C;">2022 — 2026</span>
+    </div>
+    <h1 style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:clamp(44px,11vw,108px); line-height:0.92; letter-spacing:-4px; margin:8px 0 0; color:#3a352d;">SELECTED WORK</h1>
+    <p style="font-family:'DM Sans',sans-serif; font-size:21px; line-height:1.5; color:#6b6354; max-width:780px; margin:20px 0 0;">A selection of work I've led or contributed to significantly, each with context on the problem, my process, and what we built.</p>
+  </section>
+
+  <!-- FINDER -->
+  <section style="max-width:1180px; margin:0 auto; padding:34px 28px 90px;">
+    <div style="background:#f3eee2; border:1px solid rgba(46,42,36,0.12); border-radius:18px 18px 0 0; box-shadow:0 24px 50px -24px rgba(46,42,36,0.32); overflow:hidden;">
+      <div style="display:flex; align-items:center; gap:8px; padding:14px 18px; background:#e7e0d1; border-bottom:1px solid rgba(46,42,36,0.1);">
+        <span style="width:13px; height:13px; border-radius:50%; background:#ED6A5E;"></span>
+        <span style="width:13px; height:13px; border-radius:50%; background:#F5BF4F;"></span>
+        <span style="width:13px; height:13px; border-radius:50%; background:#62C554;"></span>
+        <span style="margin-left:auto; margin-right:auto; font-size:14px; color:#8a8170;">himanshi's work</span>
+      </div>
+      <div style="display:flex; flex-wrap:wrap; min-height:560px;">
+        <!-- sidebar -->
+        <div style="flex:0 0 250px; min-width:210px; padding:30px 24px; border-right:1px solid rgba(46,42,36,0.1);">
+          <div style="font-size:15px; color:#a59c89; margin-bottom:14px;">Favourites</div>
+          <div onClick="{{ showWorkTab }}" style="display:flex; align-items:center; gap:12px; padding:9px 10px; border-radius:8px; color:#2E2A24; font-size:18px; font-weight:500; cursor:pointer; background:{{ workTabBg }}; transition:background .25s ease;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/></svg>
+            Work projects
+          </div>
+          <div style="font-size:15px; color:#a59c89; margin:28px 0 14px;">Explore</div>
+          <div onClick="{{ showSketchTab }}" style="display:flex; align-items:center; gap:12px; padding:9px 10px; border-radius:8px; color:#2E2A24; font-size:18px; font-weight:500; cursor:pointer; background:{{ sketchTabBg }}; transition:background .25s ease;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/></svg>
+            leave a sketch
+          </div>
+        </div>
+        <!-- main -->
+        <div style="flex:1 1 520px; min-width:320px; position:relative;">
+          <sc-if value="{{ showWork }}" hint-placeholder-val="{{ true }}">
+            <div style="padding:42px 40px;">
+              <sc-if value="{{ showGrid }}" hint-placeholder-val="{{ true }}">
+                <div style="display:flex; flex-wrap:wrap; gap:40px 44px;">
+                  <sc-for list="{{ projects }}" as="p" hint-placeholder-count="8">
+                    <div onClick="{{ p.open }}" style="width:128px; display:flex; flex-direction:column; align-items:center; gap:14px; cursor:pointer; transition:transform .4s cubic-bezier(0.34,1.56,0.64,1);" style-hover="transform:translateY(-8px) scale(1.05);">
+                      <div style="position:relative; width:104px; height:80px;">
+                        <div style="position:absolute; top:-13px; left:7px; width:46px; height:17px; background:#5bb8f5; border-radius:7px 7px 0 0;"></div>
+                        <div style="position:absolute; inset:0; background:linear-gradient(168deg,#69c2fb,#3aa0ef); border-radius:6px 12px 12px 12px; box-shadow:0 8px 16px -5px rgba(58,160,239,0.55), inset 0 2px 3px rgba(255,255,255,0.5);"></div>
+                        <sc-if value="{{ p.wip }}" hint-placeholder-val="{{ false }}">
+                          <div style="position:absolute; top:24px; left:0; right:0; text-align:center; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:22px; color:#0E8C9C; letter-spacing:1px; text-shadow:0 1px 1px rgba(255,255,255,0.4);">WIP</div>
+                        </sc-if>
+                      </div>
+                      <span style="font-size:16px; text-align:center; color:#2E2A24; line-height:1.25; font-weight:500;">{{ p.name }}</span>
+                    </div>
+                  </sc-for>
+                </div>
+              </sc-if>
+
+              <sc-if value="{{ showDetail }}" hint-placeholder-val="{{ false }}">
+                <div style="display:flex; flex-direction:column; gap:22px; max-width:700px; max-height:560px; overflow-y:auto; padding-right:16px;">
+                  <button onClick="{{ backToGrid }}" style="align-self:flex-start; position:sticky; top:0; background:#efe9dc; border:none; color:#0E8C9C; font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:15px; cursor:pointer; padding:4px 0 8px; display:flex; align-items:center; gap:6px; z-index:2;">&#8592; Back to all work</button>
+                  <div>
+                    <div style="font-family:'Architects Daughter',cursive; font-size:26px; color:#6b6354;">{{ selectedProject.role }}</div>
+                    <h3 style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:42px; letter-spacing:-1.5px; margin:0; color:#2E2A24;">{{ selectedProject.name }}</h3>
+                    <div style="font-family:'DM Sans',sans-serif; font-size:16px; color:#0E8C9C; font-weight:600; margin-top:4px;">{{ selectedProject.type }}</div>
+                  </div>
+                  <p style="font-family:'DM Sans',sans-serif; font-size:17px; line-height:1.65; color:#4a4438; margin:0;">{{ selectedProject.desc }}</p>
+                  <div style="display:flex; flex-wrap:wrap; gap:10px;">
+                    <sc-for list="{{ selectedProject.tags }}" as="tag" hint-placeholder-count="3">
+                      <span style="padding:7px 16px; border-radius:30px; background:#e3dccb; border:1px solid rgba(46,42,36,0.12); font-size:14px; color:#6b6354; font-weight:500; transition:transform .3s cubic-bezier(0.34,1.56,0.64,1), box-shadow .3s ease;" style-hover="transform:translateY(-4px); box-shadow:0 8px 16px -8px rgba(46,42,36,0.3);">{{ tag }}</span>
+                    </sc-for>
+                  </div>
+
+                  <sc-if value="{{ selectedProject.hasMetrics }}" hint-placeholder-val="{{ false }}">
+                    <div style="display:flex; flex-wrap:wrap; gap:12px; margin-top:2px;">
+                      <sc-for list="{{ selectedProject.metrics }}" as="m" hint-placeholder-count="3">
+                        <div style="background:#2b2620; border-radius:12px; padding:14px 18px; min-width:104px;">
+                          <div style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:26px; line-height:1; color:#0E8C9C;">{{ m.value }}</div>
+                          <div style="font-family:'DM Sans',sans-serif; font-size:12px; color:#b7ad9c; margin-top:6px; line-height:1.25;">{{ m.label }}</div>
+                        </div>
+                      </sc-for>
+                    </div>
+                  </sc-if>
+
+                  <div style="height:1px; background:rgba(46,42,36,0.12);"></div>
+
+                  <div style="display:flex; flex-direction:column; gap:7px;">
+                    <div style="font-family:'Space Grotesk',sans-serif; font-weight:700; letter-spacing:1.5px; font-size:13px; color:#0E8C9C;">MY ROLE</div>
+                    <p style="font-family:'DM Sans',sans-serif; font-size:16px; line-height:1.6; color:#4a4438; margin:0;">{{ selectedProject.roleDetail }}</p>
+                  </div>
+                  <div style="display:flex; flex-direction:column; gap:7px;">
+                    <div style="font-family:'Space Grotesk',sans-serif; font-weight:700; letter-spacing:1.5px; font-size:13px; color:#0E8C9C;">THE PROBLEM</div>
+                    <p style="font-family:'DM Sans',sans-serif; font-size:16px; line-height:1.6; color:#4a4438; margin:0;">{{ selectedProject.problem }}</p>
+                  </div>
+                  <div style="display:flex; flex-direction:column; gap:7px;">
+                    <div style="font-family:'Space Grotesk',sans-serif; font-weight:700; letter-spacing:1.5px; font-size:13px; color:#0E8C9C;">THE PROCESS</div>
+                    <p style="font-family:'DM Sans',sans-serif; font-size:16px; line-height:1.6; color:#4a4438; margin:0;">{{ selectedProject.process }}</p>
+                  </div>
+                  <div style="display:flex; flex-direction:column; gap:7px;">
+                    <div style="font-family:'Space Grotesk',sans-serif; font-weight:700; letter-spacing:1.5px; font-size:13px; color:#0E8C9C;">THE OUTCOME</div>
+                    <p style="font-family:'DM Sans',sans-serif; font-size:16px; line-height:1.6; color:#4a4438; margin:0;">{{ selectedProject.outcome }}</p>
+                  </div>
+
+                  <a href="{{ selectedProject.url }}" target="_blank" rel="noopener" style="margin-top:6px; align-self:flex-start; display:inline-flex; align-items:center; gap:8px; padding:14px 26px; background:#0E8C9C; color:#fff; text-decoration:none; border-radius:8px; font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:15px; box-shadow:0 8px 18px -8px rgba(14,140,156,0.6); transition:transform .35s cubic-bezier(0.34,1.56,0.64,1);" style-hover="transform:translateY(-3px);">Visit live project &#8599;</a>
+                </div>
+              </sc-if>
+            </div>
+          </sc-if>
+
+          <!-- sketch tab -->
+          <div style="display:{{ sketchDisplay }}; position:relative; background:#fdfcf6; min-height:560px;">
+            <sc-if value="{{ gridOn }}" hint-placeholder-val="{{ true }}">
+              <div style="position:absolute; inset:0; background-image:linear-gradient(rgba(46,42,36,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(46,42,36,0.06) 1px, transparent 1px); background-size:28px 28px; pointer-events:none;"></div>
+            </sc-if>
+            <canvas id="sketch-canvas" style="position:relative; display:block; width:100%; height:560px; cursor:crosshair; touch-action:none;"></canvas>
+
+            <div style="position:absolute; top:50%; right:24px; transform:translateY(-50%); display:flex; flex-direction:column; align-items:center; gap:6px; padding:14px 10px; background:#fbf8ef; border-radius:44px; box-shadow:0 16px 34px -16px rgba(46,42,36,0.42); border:1px solid rgba(46,42,36,0.08); z-index:5;">
+              <div title="Pencil" style="width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#0E8C9C; background:rgba(14,140,156,0.14);">
+                <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+              </div>
+              <div onClick="{{ togglePalette }}" title="Colour" style="width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:transform .25s cubic-bezier(0.34,1.56,0.64,1);" style-hover="transform:scale(1.1);">
+                <span style="width:27px; height:27px; border-radius:50%; background:{{ currentColor }}; box-shadow:0 2px 5px -1px rgba(0,0,0,0.4); border:2px solid #fff;"></span>
+              </div>
+              <div onClick="{{ cycleBrush }}" title="Brush size" style="width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:background .2s ease, transform .25s cubic-bezier(0.34,1.56,0.64,1);" style-hover="background:rgba(46,42,36,0.07); transform:scale(1.08);">
+                <span style="width:{{ brushDot }}; height:{{ brushDot }}; border-radius:50%; background:#2E2A24;"></span>
+              </div>
+              <div style="width:24px; height:1px; background:rgba(46,42,36,0.12); margin:4px 0;"></div>
+              <div onClick="{{ toggleGrid }}" title="Toggle grid" style="position:relative; width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; color:#2E2A24; transition:background .2s ease, transform .25s cubic-bezier(0.34,1.56,0.64,1);" style-hover="background:rgba(46,42,36,0.07); transform:scale(1.08);">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                <sc-if value="{{ gridOn }}" hint-placeholder-val="{{ true }}">
+                  <span style="position:absolute; bottom:6px; right:7px; width:7px; height:7px; border-radius:50%; background:#0E8C9C; border:1.5px solid #fbf8ef;"></span>
+                </sc-if>
+              </div>
+              <div onClick="{{ downloadSketch }}" title="Download" style="width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; color:#2E2A24; transition:background .2s ease, transform .25s cubic-bezier(0.34,1.56,0.64,1);" style-hover="background:rgba(46,42,36,0.07); transform:scale(1.08);">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M5 21h14"/></svg>
+              </div>
+              <div style="width:24px; height:1px; background:rgba(46,42,36,0.12); margin:4px 0;"></div>
+              <div onClick="{{ undoSketch }}" title="Undo" style="width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; color:#2E2A24; transition:background .2s ease, transform .25s cubic-bezier(0.34,1.56,0.64,1);" style-hover="background:rgba(46,42,36,0.07); transform:scale(1.08);">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14 4 9l5-5"/><path d="M4 9h11a5 5 0 0 1 0 10h-1"/></svg>
+              </div>
+              <div onClick="{{ redoSketch }}" title="Redo" style="width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; color:#2E2A24; transition:background .2s ease, transform .25s cubic-bezier(0.34,1.56,0.64,1);" style-hover="background:rgba(46,42,36,0.07); transform:scale(1.08);">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 14 5-5-5-5"/><path d="M20 9H9a5 5 0 0 0 0 10h1"/></svg>
+              </div>
+              <div onClick="{{ clearSketch }}" title="Clear" style="width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; color:#0A6E7B; transition:background .2s ease, transform .25s cubic-bezier(0.34,1.56,0.64,1);" style-hover="background:rgba(10,110,123,0.1); transform:scale(1.08);">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M6 6l1 14a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2l1-14"/></svg>
+              </div>
+
+              <sc-if value="{{ paletteOpen }}" hint-placeholder-val="{{ false }}">
+                <div style="position:absolute; right:60px; top:46px; display:flex; flex-direction:column; gap:11px; padding:13px 11px; background:#fbf8ef; border-radius:30px; box-shadow:0 16px 34px -16px rgba(46,42,36,0.42); border:1px solid rgba(46,42,36,0.08);">
+                  <sc-for list="{{ palette }}" as="c" hint-placeholder-count="5">
+                    <div onClick="{{ c.select }}" style="position:relative; width:28px; height:28px; border-radius:50%; cursor:pointer; background:{{ c.hex }}; box-shadow:0 3px 7px -2px rgba(0,0,0,0.3); transition:transform .25s cubic-bezier(0.34,1.56,0.64,1);" style-hover="transform:scale(1.18);">
+                      <sc-if value="{{ c.active }}" hint-placeholder-val="{{ false }}">
+                        <span style="position:absolute; inset:-5px; border:2px solid #2E2A24; border-radius:50%;"></span>
+                      </sc-if>
+                    </div>
+                  </sc-for>
+                </div>
+              </sc-if>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="background:#2b2620; padding:64px 28px 40px; position:relative; margin-top:30px;">
+    <div style="max-width:1180px; margin:0 auto; text-align:center;">
+      <div style="font-family:'Architects Daughter',cursive; font-size:32px; color:#0E8C9C;">&amp; that's a wrap!</div>
+      <h2 style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:clamp(30px,6.5vw,44px); letter-spacing:-1px; color:#F4EFE3; margin:6px 0 36px;">GLAD YOU MADE IT HERE.</h2>
+      <div style="font-family:'Architects Daughter',cursive; font-size:26px; color:#b7ad9c; margin-bottom:18px;">You can connect with me on,</div>
+      <div style="display:flex; flex-wrap:wrap; gap:14px 30px; justify-content:center; align-items:center; margin-bottom:50px;">
+        <sc-for list="{{ socials }}" as="s" hint-placeholder-count="4">
+          <a href="{{ s.url }}" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:6px; font-family:'Space Grotesk',sans-serif; font-weight:700; letter-spacing:1px; font-size:22px; color:{{ s.color }}; text-decoration:none; transition:transform .3s cubic-bezier(0.34,1.56,0.64,1);" style-hover="transform:translateY(-4px);">{{ s.label }} &#8599;</a>
+        </sc-for>
+      </div>
+      <div style="display:flex; flex-wrap:wrap; gap:20px; align-items:center; justify-content:space-between; border-top:1px solid rgba(244,239,227,0.14); padding-top:24px;">
+        <div style="font-family:'Architects Daughter',cursive; font-size:24px; color:#b7ad9c; display:flex; align-items:center; gap:10px;">Built with care and a lot of passion! <span style="color:#0E8C9C;">&#10084;</span></div>
+        <div style="font-family:'DM Sans',sans-serif; font-variant-numeric:tabular-nums; font-size:15px; color:#8a8170; letter-spacing:1px;">{{ clockTime }} &nbsp;&#124;&nbsp; {{ dateLong }}</div>
+      </div>
+    </div>
+  </footer>
+
+  <button id="go-top" onClick="{{ scrollTop }}" aria-label="Back to top" style="position:fixed; right:26px; bottom:26px; z-index:60; width:108px; height:108px; border:none; background:transparent; cursor:pointer; display:flex; align-items:center; justify-content:center; opacity:0; transform:translateY(14px); pointer-events:none; transition:opacity .4s ease, transform .4s cubic-bezier(0.34,1.56,0.64,1);" style-hover="transform:translateY(-4px);">
+    <svg viewBox="0 0 108 108" width="108" height="108" style="position:absolute; inset:0; animation:spin 11s linear infinite;">
+      <defs><path id="gtt-path" d="M54,54 m-40,0 a40,40 0 1,1 80,0 a40,40 0 1,1 -80,0"></path></defs>
+      <text fill="#2E2A24" style="font-family:'Space Grotesk',sans-serif; font-size:12px; font-weight:700; letter-spacing:3.5px;"><textPath href="#gtt-path" startOffset="0">GO TO TOP&#160;&#160;&#9670;&#160;&#160;GO TO TOP&#160;&#160;&#9670;&#160;&#160;</textPath></text>
+    </svg>
+    <span style="position:absolute; width:66px; height:66px; border:1.6px dashed rgba(46,42,36,0.55); border-radius:50%;"></span>
+    <span style="position:relative; color:#0E8C9C; font-size:30px; line-height:1; font-weight:700;">&#8593;</span>
+  </button>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  state = { selectedProject: null, sketchColor: '#2E2A24', brushSize: 4, gridOn: true, paletteOpen: false, finderTab: 'work' };
+
+  componentDidMount() {
+    this._sketchColor = this.state.sketchColor;
+    this._brush = this.state.brushSize;
+    this._history = [];
+    this._redo = [];
+    this._reduced = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+    this._tick = setInterval(() => this.setState({ now: new Date() }), 1000);
+    setTimeout(() => { this.initHeader(); this.initCanvas(); }, 30);
+  }
+  componentWillUnmount() { clearInterval(this._tick); }
+  pad(n) { return (n < 10 ? '0' : '') + n; }
+  scrollTop = () => window.scrollTo({ top: 0, behavior: this._reduced ? 'auto' : 'smooth' });
+
+  selectProject = (p) => this.setState({ selectedProject: p });
+  backToGrid = () => this.setState({ selectedProject: null });
+  showWorkTab = () => this.setState({ finderTab: 'work' });
+  showSketchTab = () => { this.setState({ finderTab: 'sketch' }); setTimeout(() => { if (this._resizeCanvas) this._resizeCanvas(); }, 60); };
+
+  setColor(hex) { this._sketchColor = hex; this.setState({ sketchColor: hex, paletteOpen: false }); }
+  togglePalette = () => this.setState((s) => ({ paletteOpen: !s.paletteOpen }));
+  toggleGrid = () => this.setState((s) => ({ gridOn: !s.gridOn }));
+  cycleBrush = () => { const sizes = [2, 4, 8, 14]; const i = (sizes.indexOf(this.state.brushSize) + 1) % sizes.length; this._brush = sizes[i]; this.setState({ brushSize: sizes[i] }); };
+
+  pushHistory() {
+    if (!this._ctx || !this._canvas || !this._canvas.width) return;
+    try { this._history.push(this._ctx.getImageData(0, 0, this._canvas.width, this._canvas.height)); if (this._history.length > 30) this._history.shift(); this._redo = []; } catch (e) {}
+  }
+  undoSketch = () => {
+    if (!this._ctx || this._history.length < 1) return;
+    if (this._history.length === 1) { this._redo.push(this._ctx.getImageData(0, 0, this._canvas.width, this._canvas.height)); this._ctx.putImageData(this._history[0], 0, 0); return; }
+    const cur = this._history.pop(); this._redo.push(cur); this._ctx.putImageData(this._history[this._history.length - 1], 0, 0);
+  };
+  redoSketch = () => { if (!this._ctx || !this._redo.length) return; const img = this._redo.pop(); this._history.push(img); this._ctx.putImageData(img, 0, 0); };
+  clearSketch = () => { if (!this._ctx || !this._canvas) return; this.pushHistory(); this._ctx.clearRect(0, 0, this._canvas.width, this._canvas.height); };
+  downloadSketch = () => {
+    if (!this._canvas || !this._canvas.width) return;
+    const tmp = document.createElement('canvas'); tmp.width = this._canvas.width; tmp.height = this._canvas.height;
+    const t = tmp.getContext('2d'); t.fillStyle = '#fdfcf6'; t.fillRect(0, 0, tmp.width, tmp.height); t.drawImage(this._canvas, 0, 0);
+    const a = document.createElement('a'); a.download = 'himanshi-sketch.png'; a.href = tmp.toDataURL('image/png'); a.click();
+  };
+
+  initHeader() {
+    const h = document.getElementById('site-header');
+    const logo = document.getElementById('hj-logo');
+    if (!h) return;
+    const onScroll = () => {
+      const s = window.scrollY > 40;
+      h.style.paddingTop = s ? '10px' : '16px';
+      const card = document.getElementById('header-card');
+      if (card) {
+        card.style.paddingTop = s ? '9px' : '13px';
+        card.style.paddingBottom = s ? '9px' : '13px';
+        card.style.boxShadow = s ? '0 16px 36px -16px rgba(46,42,36,0.45)' : '0 10px 30px -18px rgba(46,42,36,0.35)';
+      }
+      if (logo) logo.style.fontSize = s ? '25px' : '28px';
+      const gt = document.getElementById('go-top');
+      if (gt) {
+        const show = window.scrollY > 320;
+        gt.style.opacity = show ? '1' : '0';
+        gt.style.transform = show ? 'translateY(0)' : 'translateY(14px)';
+        gt.style.pointerEvents = show ? 'auto' : 'none';
+      }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+
+  initCanvas() {
+    const cv = document.getElementById('sketch-canvas');
+    if (!cv) return;
+    const ctx = cv.getContext('2d');
+    this._ctx = ctx; this._canvas = cv;
+    const setSize = () => {
+      const r = cv.getBoundingClientRect();
+      if (!r.width || !r.height) return;
+      let snap = null;
+      if (cv.width && cv.height) { try { snap = ctx.getImageData(0, 0, cv.width, cv.height); } catch (e) {} }
+      cv.width = r.width; cv.height = r.height;
+      if (snap) { try { ctx.putImageData(snap, 0, 0); } catch (e) {} }
+    };
+    this._resizeCanvas = setSize;
+    setSize();
+    this.pushHistory();
+    window.addEventListener('resize', setSize);
+    let drawing = false;
+    const pos = (e) => { const r = cv.getBoundingClientRect(); const t = e.touches && e.touches[0] ? e.touches[0] : e; return { x: t.clientX - r.left, y: t.clientY - r.top }; };
+    const start = (e) => { drawing = true; const p = pos(e); ctx.beginPath(); ctx.moveTo(p.x, p.y); if (e.cancelable) e.preventDefault(); };
+    const draw = (e) => { if (!drawing) return; const p = pos(e); ctx.lineTo(p.x, p.y); ctx.strokeStyle = this._sketchColor; ctx.lineWidth = this._brush || 4; ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.stroke(); if (e.cancelable) e.preventDefault(); };
+    const end = () => { if (drawing) { drawing = false; this.pushHistory(); } };
+    cv.addEventListener('mousedown', start);
+    cv.addEventListener('mousemove', draw);
+    window.addEventListener('mouseup', end);
+    cv.addEventListener('touchstart', start, { passive: false });
+    cv.addEventListener('touchmove', draw, { passive: false });
+    window.addEventListener('touchend', end);
+  }
+
+  renderVals() {
+    const main = 'index.html';
+    const nav = [
+      { label: 'Work', href: 'work.html', color: '#2E2A24', line: '100%' },
+      { label: 'About', href: 'about.html', color: '#2E2A24', line: '0%' },
+      { label: 'Resume', href: 'resume.html', color: '#2E2A24', line: '0%' },
+      { label: 'Contact', href: 'contact.html', color: '#2E2A24', line: '0%' }
+    ];
+
+    const rawProjects = [
+      { name: 'Deep Portfolio', type: '5 documented case studies', role: 'Case Studies', url: 'https://hjcasestudy.netlify.app', wip: false, tags: ['Design System', 'UX Research', 'Accessibility', 'Motion'], desc: 'A dedicated case-study site with five deep dives — each documented in the real brand tokens of the product. Covers design systems, usability research, zero-to-one work, accessibility audits and motion. The thinking, not just the screens.',
+        roleDetail: 'Sole designer and author — selected the five projects, rebuilt each in its real brand tokens, and wrote up the research, decisions and outcomes end to end.',
+        problem: 'Most portfolios show finished screens, not the thinking behind them — the brand audit, the research that shifted direction, the tokens that made a system scalable.',
+        process: 'Each case study documents the real colour, type and spacing tokens, then walks through the design problem, research findings, before/after decisions and measured outcomes. No filler, no lorem ipsum.',
+        outcome: 'A site built to demonstrate depth, not just output — a design system, a five-user usability study, a zero-to-one concept, a WCAG 2.2 accessibility redesign and motion work.',
+        metrics: [{ value: '20%', label: 'Less handoff friction' }, { value: '5/5', label: 'Task completion, Sleepsia' }, { value: '7', label: 'WCAG failures fixed' }, { value: '68%', label: 'Fewer rage-clicks' }] },
+      { name: 'Agile Ventures', type: 'Corporate website redesign', role: 'End-to-end UX/UI', url: 'https://agileventures.net', wip: false, tags: ['Web Redesign', 'Corporate', 'Branding'], desc: 'Modernised the site for a Gurugram business group with multiple verticals. Restructured the IA to lead with one clear story, cutting steps to any key page from 4+ clicks to 2 with a cohesive new visual system.',
+        roleDetail: 'End-to-end UX/UI — research, IA, wireframes, visual design and an interactive prototype for stakeholder sign-off.',
+        problem: 'The existing site didn\u2019t reflect the scale or credibility of the organisation. Navigation was unclear, the visual language dated, and the multiple verticals had no story tying them together.',
+        process: 'Audited the site and five competitor corporate sites, ran stakeholder interviews to map goals per vertical, then restructured the IA to lead with one clear homepage story before individual vertical pages.',
+        outcome: 'A modern, cohesive site that communicates the group\u2019s breadth at a glance, with a consistent, trustworthy identity across every vertical.',
+        metrics: [{ value: '4+\u21922', label: 'Clicks to any key page' }] },
+      { name: 'Dancing Numbers', type: 'SaaS website redesign', role: 'UI/UX Designer', url: 'https://www.dancingnumbers.com', wip: false, tags: ['SaaS', 'Conversion UX', 'B2B'], desc: 'Rebuilt the site for a QuickBooks-automation SaaS trusted by 50,000+ accountants. Restructured IA around three audience segments and elevated the free-trial CTA, simplifying 5 nested menus to 3 clear sections.',
+        roleDetail: 'In-house on the Dancing Numbers product team — audit, IA, wireframes, visual UI and developer handoff.',
+        problem: 'Deep, overlapping navigation across Services, Products and Resources made it hard for first-time visitors to grasp what the product does, and the free-trial CTA was buried.',
+        process: 'Audited every key journey (accountant, small-business owner, e-commerce), mapped drop-off points, then rebuilt the IA around three segments with a clear story: what it does \u2192 who it\u2019s for \u2192 why it works \u2192 start free trial.',
+        outcome: 'A faster-to-scan site that communicates the core value within the first screen, supporting a product trusted by 50,000+ users and 10M+ transactions processed.',
+        metrics: [{ value: '50K+', label: 'Users supported' }, { value: '5\u21923', label: 'Nav sections' }, { value: '25%', label: 'Onboarding drop-off cut' }] },
+      { name: 'Sleepsia', type: 'D2C e-commerce redesign', role: 'UI/UX Designer', url: 'https://www.sleepsia.in', wip: false, tags: ['E-commerce', 'D2C', 'Shopify', 'Mobile-first'], desc: 'Reworked the Shopify storefront for a high-volume sleep brand. Rebuilt navigation around health concerns rather than product types and surfaced trust signals above the fold — mobile-first throughout.',
+        roleDetail: 'End-to-end — audit, user flows, wireframes, high-fidelity UI, mobile-first design and Shopify theme handoff.',
+        problem: 'A cluttered homepage, 7+ top-level categories with deep sub-menus, and product pages that buried trust signals below the fold — and it broke down on mobile, where most traffic lands.',
+        process: 'Mapped the buyer\u2019s mental model (they arrive with a pain point, not a product name), rebuilt navigation around health concerns, and surfaced reviews, certifications and right-pillow content above the fold.',
+        outcome: 'A storefront built around the buyer\u2019s need rather than the catalogue — navigation reduced from 7 items to 3 clear entry points, with trust signals on the first mobile screen.',
+        metrics: [{ value: '7\u21923', label: 'Top-level nav items' }] },
+      { name: 'Sleepsia Lounge', type: "Women's nightwear D2C", role: 'UI/UX Designer', url: 'https://sleepsialounge.com', wip: false, tags: ['Fashion D2C', 'Shopify', 'Branding'], desc: 'A premium nightwear sub-brand built from the ground up — its own soft, lifestyle-led visual world distinct from the parent. A boutique-feel storefront tuned for one-thumb mobile shopping from Instagram.',
+        roleDetail: 'Brand direction, visual design, UX flows, Shopify theme design, mobile-first layout and content strategy.',
+        problem: 'A new sub-brand needed an entirely different emotional register from the parent — soft, aspirational, lifestyle-led — and had to feel like a boutique on mobile, where Instagram traffic lands.',
+        process: 'Began with a mood and positioning exercise to define the brand world, studied premium Indian D2C fashion brands, then designed a lifestyle-led homepage and product pages that lead with fabric feel and styling context.',
+        outcome: 'A launched Shopify storefront with a distinct identity — \u201cBreathe. Lounge. Repeat.\u201d — that lands within the first scroll, tuned for one-thumb mobile checkout.' },
+      { name: 'Quality Engineering CA', type: 'B2B consulting website', role: 'UI/UX Designer', url: 'https://quality-engineering.ca', wip: false, tags: ['B2B', 'Consulting', 'WordPress'], desc: 'Redesigned the site for a Toronto quality-consulting firm serving Ford, Magna and Samsung. Structured the homepage around trust signals and credentials to convert quality managers into a phone call.',
+        roleDetail: 'UI/UX Designer — audit, IA restructure, wireframes, visual design and WordPress handoff.',
+        problem: 'The site had to convey deep technical credibility to quality managers and procurement heads, while staying approachable enough to convert a first-time visitor into a call.',
+        process: 'Mapped the B2B buyer journey, structured the homepage around trust signals — client logos and credentials — and designed service pages with clear scope, FAQs and a transparent pricing approach.',
+        outcome: 'A credibility-first site that communicates expertise across PPAP, APQP, PFMEA and ISO consulting, designed to get prospects to call within the first scroll.' },
+      { name: 'GOPT World', type: 'Healthcare pain-mapping app', role: 'UI/UX Designer', url: 'https://gopt.d-crm.in', wip: false, tags: ['Healthcare', 'Web App', 'Figma'], desc: 'A web app where patients pinpoint pain on a 3D anatomy model, set severity, and send enquiries to doctors. Designed the tap-to-select flow for patients of varying digital literacy — no clinical jargon.',
+        roleDetail: 'UI/UX Designer — user flows, interaction design, hi-fi UI and a clickable Figma prototype.',
+        problem: 'Describing pain with text or dropdowns is imprecise. The app needed an interface that let patients of varying digital literacy pinpoint exactly where it hurts and how badly — without clinical jargon.',
+        process: 'Built the patient flow around a 3D anatomy model as the primary input — tap to select, slider for severity, confirm and submit — kept form fields minimal, and designed a doctor-side review dashboard.',
+        outcome: 'A clean, empathetic pain-reporting experience that removes the friction of describing symptoms in words and gives doctors richer, more precise data.' },
+      { name: 'AccountsPro', type: 'Accounting & bookkeeping site', role: 'UI/UX Designer', url: 'https://www.accountspro.co', wip: false, tags: ['B2B Services', 'Finance', 'Lead Gen'], desc: 'Redesigned a New York accounting firm\u2019s site around problem-first service categories (QuickBooks, Sage, error resolution, migration), with a 24/7 support promise visible throughout to drive consultations.',
+        roleDetail: 'UI/UX Designer — IA, wireframes, visual design and WordPress handoff.',
+        problem: 'Services were listed without hierarchy, making it hard for a small-business owner to tell whether AccountsPro could solve their specific problem — a QuickBooks error, payroll setup or a full migration.',
+        process: 'Restructured the IA around service categories with problem-first language, designed a homepage that leads with the value promise and a 24/7 support offer, and kept the visual design clean and professional.',
+        outcome: 'A conversion-focused site with a strong service hierarchy — QuickBooks and Sage solutions surfaced prominently and a 24/7 support promise visible throughout.' },
+      { name: 'A1', type: 'Medicine e-commerce app', role: 'UI/UX Designer', url: 'https://www.behance.net/gallery/218903175/A1-Wireframe', wip: false, tags: ['Mobile App', 'Healthcare', 'E-commerce'], desc: 'A medicine-delivery mobile experience taken wireframe to hi-fi in Figma — browsing, a one-tap referral flow, and checkout, designed for the higher trust and clarity health purchases demand.',
+        roleDetail: 'UI/UX Designer — wireframes, hi-fi screens, interaction design and a Figma prototype.',
+        problem: 'Medicine e-commerce demands more trust and clarity than typical retail — users need confidence they\u2019re ordering the right product from a legitimate source, with an easy repeat-purchase flow.',
+        process: 'Started with low-fidelity wireframes for the core flows — browse, search, product detail, referral, checkout — then iterated to hi-fi with a clean, medical-adjacent language and a one-tap referral.',
+        outcome: 'A complete wireframe-to-hi-fi case study showing mobile UX process from structure through to a polished interface, published on Behance.' },
+      { name: 'Rajasthan Tourism', type: 'Tourism UI/UX concept', role: 'UI/UX Designer', url: 'https://www.behance.net/gallery/199678435/Rajasthan-Tourism-UIUX', wip: true, tags: ['Tourism', 'UI Concept', 'Mobile'], desc: 'A concept that matches Rajasthan\u2019s visual drama \u2014 terracotta, gold, indigo \u2014 to an intuitive itinerary and booking flow, with content filtered by region, theme and budget.',
+        roleDetail: 'UI/UX Designer — concept, visual design, IA and a hi-fi Figma prototype.',
+        problem: 'Government tourism sites often mismatch the richness of the destination with a flat digital experience. Rajasthan deserved a UI as dramatic as its palaces and deserts, yet easy to navigate.',
+        process: 'Drew from the state\u2019s palette to build an immersive, editorial language, and mapped the tourist journey from discovery to itinerary building and booking, filtered by region, theme and budget.',
+        outcome: 'A visually cohesive tourism concept showing how cultural destinations can create digital experiences as memorable as the place itself.' },
+      { name: 'Wallet Z', type: 'Fintech wallet app UI', role: 'UI/UX Designer', url: 'https://www.behance.net/gallery/202619141/Wallet-Z', wip: true, tags: ['Fintech', 'Mobile App', 'UI'], desc: 'A lightweight money-wallet concept built around three daily jobs \u2014 send, receive, check balance \u2014 with recent contacts front and centre and everything reachable in two taps or fewer.',
+        roleDetail: 'UI/UX Designer — visual design, interaction design, hi-fi screens and a Figma prototype.',
+        problem: 'Most wallet apps feel like scaled-down banking interfaces — dense and anxiety-inducing. Wallet Z needed to feel lightweight, trustworthy and effortless for everyday transactions.',
+        process: 'Designed around three daily jobs — send, receive, check balance — surfaced recent contacts front and centre, and used a dark, high-contrast language with navigation shallow enough to reach anything in two taps.',
+        outcome: 'A polished fintech concept that puts daily transactions first — money UX that feels as simple as sending a message.' },
+      { name: 'Pawly', type: 'Pet care mobile app', role: 'UI/UX Designer', url: 'https://www.behance.net/gallery/209771525/Pawly-Pet-App', wip: true, tags: ['Pet Tech', 'Mobile App', 'Concept'], desc: 'A pet-care companion for vet appointments, vaccination tracking, feeding reminders and a local community \u2014 warm and playful, sitting between a clinical tracker and a pet social app.',
+        roleDetail: 'UI/UX Designer — concept, brand-aligned visual design, user flows and a hi-fi Figma prototype.',
+        problem: 'Pet-care apps tend to be either too clinical or too social. Pawly needed to sit between — functional for a busy owner, warm enough to feel like a companion.',
+        process: 'Designed around four jobs — care, health, community and shop — with a warm palette and illustrative UI to keep the tone playful without sacrificing clarity.',
+        outcome: 'A delightful, full-featured pet-care concept showing how utility and warmth can coexist in a product for people who treat pets like family.' },
+      { name: 'DreamTeam', type: 'Real estate UI concept', role: 'UI/UX Designer', url: 'https://www.behance.net/gallery/211644127/DreamTeam-Real-Estate-UI', wip: true, tags: ['Real Estate', 'UI Concept', 'Mobile'], desc: 'A property-discovery and agent-matching concept that starts with a preference quiz for fewer, better-matched listings, then connects buyers to the right agent with trust signals upfront.',
+        roleDetail: 'UI/UX Designer — concept, visual design, user flows, hi-fi screens and a Figma prototype.',
+        problem: 'Real-estate apps overwhelm users with listings before they\u2019ve defined what they want. DreamTeam needed a flow that helped buyers narrow down with confidence.',
+        process: 'Started with a preference quiz for fewer, better-matched results, designed detail pages around what buyers want first — price, commute, neighbourhood, honest photos — and built agent profiles for trust.',
+        outcome: 'A human-centred real-estate UI that puts the buyer\u2019s confidence first — discovery that feels intentional rather than overwhelming.' }
+    ];
+    const projects = rawProjects.map((p) => Object.assign({}, p, { open: () => this.selectProject(p), hasMetrics: !!(p.metrics && p.metrics.length), metrics: p.metrics || [] }));
+
+    const paletteRaw = [ { hex: '#2E2A24' }, { hex: '#0E8C9C' }, { hex: '#3B6FE0' }, { hex: '#D6336C' }, { hex: '#3f5c4a' } ];
+    const palette = paletteRaw.map((c) => ({ hex: c.hex, active: this.state.sketchColor === c.hex, select: () => this.setColor(c.hex) }));
+
+    const sp = this.state.selectedProject;
+    const tab = this.state.finderTab;
+    const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    const dn = this.state.now || new Date();
+    const clockTime = this.pad(dn.getHours()) + ':' + this.pad(dn.getMinutes()) + ':' + this.pad(dn.getSeconds());
+    const dateLong = days[dn.getDay()] + ', ' + months[dn.getMonth()] + ' ' + dn.getDate() + ', ' + dn.getFullYear();
+    const socials = [
+      { label: 'LINKEDIN', url: 'https://www.linkedin.com/in/himanshijain', color: '#5b86e6' },
+      { label: 'INSTAGRAM', url: 'https://www.instagram.com/himanshijain', color: '#D6336C' },
+      { label: 'BEHANCE', url: 'https://www.behance.net/himanshijain', color: '#3B6FE0' },
+      { label: 'WHATSAPP', url: 'https://wa.me/917014744297', color: '#62C554' }
+    ];
+    return {
+      nav, projects, palette, socials, clockTime, dateLong, scrollTop: this.scrollTop,
+      selectedProject: sp, showGrid: !sp, showDetail: !!sp,
+      showWork: tab === 'work', sketchDisplay: tab === 'sketch' ? 'block' : 'none',
+      workTabBg: tab === 'work' ? 'rgba(14,140,156,0.1)' : 'transparent',
+      sketchTabBg: tab === 'sketch' ? 'rgba(14,140,156,0.1)' : 'transparent',
+      showWorkTab: this.showWorkTab, showSketchTab: this.showSketchTab,
+      currentColor: this.state.sketchColor, brushDot: (this.state.brushSize + 6) + 'px', gridOn: this.state.gridOn, paletteOpen: this.state.paletteOpen,
+      togglePalette: this.togglePalette, cycleBrush: this.cycleBrush, toggleGrid: this.toggleGrid,
+      undoSketch: this.undoSketch, redoSketch: this.redoSketch, downloadSketch: this.downloadSketch,
+      backToGrid: this.backToGrid, clearSketch: this.clearSketch
+    };
+  }
+}
+</script>
+</body>
+</html>
